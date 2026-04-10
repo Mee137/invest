@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Ignist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        .signup-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .signup-left {
+            flex: 1;
+            background-color: #0118D8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-right {
+            flex: 1;
+            background-color: white;
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .signup-logo {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .signup-tagline {
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .signup-form {
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .signup-form h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: #F3F4F6;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .form-group input::placeholder {
+            color: #9CA3AF;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0118D8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .login-text a {
+            color: #6B7280;
+            text-decoration: underline;
+        }
+
+        .or-divider {
+            text-align: center;
+            position: relative;
+            margin: 24px 0;
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: calc(50% - 30px);
+            height: 1px;
+            background-color: #E5E7EB;
+        }
+
+        .or-divider::before {
+            left: 0;
+        }
+
+        .or-divider::after {
+            right: 0;
+        }
+
+        .google-signup {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+        }
+
+        .google-signup img {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                flex-direction: column;
+            }
+
+            .signup-left {
+                padding: 40px 20px;
+            }
+
+            .signup-right {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-container">
+        <div class="signup-left">
+            <img src="images/bluee.png" alt="Invest Logo" class="signup-logo">
+            <p class="signup-tagline">Invest in potential. Ignite success</p>
+        </div>
+        <div class="signup-right">
+          <form id="signupForm" class="signup-form">
+    <h1>Create your Account</h1>
+    
+    <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" placeholder="Enter your Full Name here" required>
+    </div>
+
+    <div class="form-group">
+        <label for="role">Role</label>
+        <select id="role" required>
+            <option value="">Choose your role</option>
+            <option value="investor">Investor</option>
+            <option value="startup_founder">Startup Founder</option>
+            <option value="business_owner">Business Owner</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your Email here" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your Password here" required>
+    </div>
+
+    <button type="submit" class="signup-button" id="submitBtn">Sign Up</button>
+</form>
+
+<!-- JavaScript - Real Signup -->
+<!-- Real Signup with better debugging -->
+<script>
+document.getElementById('signupForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Creating account...";
+
+    const formData = {
+        full_name: document.getElementById('fullname').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value,
+        role: document.getElementById('role').value
+    };
+
+    console.log("📤 Sending data:", formData);
+
+    try {
+        const response = await fetch('/api/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        console.log("📥 Response status:", response.status);
+
+        const result = await response.json();
+        console.log("📥 Result from server:", result);
+
+        if (result.success) {
+            alert("✅ Account created successfully!");
+            window.location.href = "/login";
+        } else {
+            alert("❌ " + (result.message || "Failed to create account"));
+        }
+    } catch (error) {
+        console.error("❌ Fetch error:", error);
+        alert("❌ Connection error. Make sure the server is running (npm run dev)");
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Sign Up";
+});
+</script>
+            <p class="login-text">Already have an account? <a href="login.html">Log in</a></p>
+
+            <div class="or-divider">OR</div>
+
+            <button type="button" class="google-signup">
+                <img src="images/google.png" alt="Google logo">
+                Sign up with Google
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

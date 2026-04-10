@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Ignist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background-color: #fef6e4;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 80px;
+            background-color: transparent;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 2rem;
+            color: #0000FF;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .log-out {
+            background-color: #0000FF;
+            color: #fff;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #000;
+            text-decoration: none;
+            margin: 40px 0 0 80px;
+            font-weight: 500;
+        }
+
+        .payment-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .payment-container h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .payment-section {
+            margin-bottom: 40px;
+        }
+
+        .payment-section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #374151;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .form-group input::placeholder {
+            color: #9CA3AF;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 16px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            min-height: 80px;
+        }
+
+        .payment-method:hover {
+            border-color: #0000FF;
+        }
+
+        .payment-method.selected {
+            border-color: #0000FF;
+            background-color: rgba(0, 0, 255, 0.05);
+        }
+
+        .payment-method img {
+            width: 100px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .next-button {
+            width: 100%;
+            padding: 14px;
+            background-color: #0000FF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 32px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 24px 20px;
+            }
+
+            .back-button {
+                margin: 20px 0 0 20px;
+            }
+
+            .payment-container {
+                padding: 0 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="images/logoo.png" alt="Ignist Logo" style="width: 120px; height: auto;">
+        </a>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Categories</a>
+            <a href="#">Features</a>
+            <a href="#">FAQs</a>
+            <a href="#">About Us</a>
+        </nav>
+        <a href="#" class="log-out">Log out</a>
+    </header>
+
+    <a href="#" class="back-button">← Back</a>
+
+    <div class="payment-container">
+        <h1>Complete registration payment</h1>
+
+        <div class="payment-section">
+            <h2>Personal details</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="address">Address line</label>
+                    <input type="text" id="address" placeholder="P.o.Box 1223">
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" placeholder="Arusha">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" id="state" placeholder="Algiers, Algeria">
+                </div>
+                <div class="form-group">
+                    <label for="postal">Postal code</label>
+                    <input type="text" id="postal" placeholder="5050">
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-section">
+            <h2>Payment methods</h2>
+            <div class="payment-methods">
+                <div class="payment-method selected">
+                    <img src="images/bita9aDhahabya.png" alt="Bita9a Dhahabya" style="max-width: 100%; height: auto;">
+                </div>
+                <div class="payment-method">
+                    <img src="images/paymentOnline.jpg" alt="Payment Online";">
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-section">
+            <h2>Card details</h2>
+            <div class="form-group">
+                <label for="card-number">Card number</label>
+                <input type="text" id="card-number" placeholder="Seen on your card">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="expiry">Expiry</label>
+                    <input type="text" id="expiry" placeholder="20/23">
+                </div>
+                <div class="form-group">
+                    <label for="cvc">CVC</label>
+                    <input type="text" id="cvc" placeholder="654">
+                </div>
+            </div>
+        </div>
+
+        <form action="payment2.html" method="GET">
+            <button type="submit" class="next-button">Next</button>
+        </form>
+    </div>
+
+    <script>
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', () => {
+                // Remove selected class from all methods
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked method
+                method.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+
+</html>

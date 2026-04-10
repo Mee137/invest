@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Ignist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        .payment-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .payment-left {
+            flex: 1;
+            background-color: #0118D8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-right {
+            flex: 1;
+            background-color: white;
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .payment-logo {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .payment-tagline {
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .payment-form {
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .payment-form h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .payment-form p {
+            text-align: center;
+            color: #6B7280;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .subscription-option {
+            background: linear-gradient(to right, #E5E7EB, #D1D5DB);
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .subscription-option.selected {
+            background: linear-gradient(to right, #E5E7EB, #D1D5DB);
+            border: 2px solid #0118D8;
+            padding: 14px;
+        }
+
+        .subscription-option span {
+            color: #1F2937;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .radio-circle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #0118D8;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .radio-circle.selected::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #0118D8;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .privacy-text {
+            text-align: center;
+            color: #6B7280;
+            font-size: 12px;
+            margin: 24px 0;
+            line-height: 1.5;
+        }
+
+        .validate-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0118D8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .payment-container {
+                flex-direction: column;
+            }
+
+            .payment-left {
+                padding: 40px 20px;
+            }
+
+            .payment-right {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment-container">
+        <div class="payment-left">
+            <img src="images/bluee.png" alt="Ignist Logo" class="payment-logo">
+            <p class="payment-tagline">Invest in potential. Ignite success</p>
+        </div>
+        <div class="payment-right">
+            <form class="payment-form">
+                <h1>Payment</h1>
+                <p>Choose your subscription plan</p>
+
+                <div class="subscription-option selected">
+                    <span>Free Trial (1 week)</span>
+                    <div class="radio-circle selected"></div>
+                </div>
+
+                <div class="subscription-option">
+                    <span>1500 DA/Month</span>
+                    <div class="radio-circle"></div>
+                </div>
+
+                <div class="subscription-option">
+                    <span>8000 DA/6 Months</span>
+                    <div class="radio-circle"></div>
+                </div>
+
+                <p class="privacy-text">
+                    Your personal data will be used to process your order, support your
+                    experience throughout this website, and for other purposes
+                    described in our privacy policy.
+                </p>
+
+                <button type="submit" class="validate-button">Validate Your Purchase</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.subscription-option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                document.querySelectorAll('.subscription-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                    opt.querySelector('.radio-circle').classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                option.querySelector('.radio-circle').classList.add('selected');
+            });
+        });
+    </script>
+</body>
+
+</html>

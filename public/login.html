@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Ignist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .login-left {
+            flex: 1;
+            background-color: #0118D8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-right {
+            flex: 1;
+            background-color: white;
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-logo {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .login-tagline {
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .login-form h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: #F3F4F6;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .form-group input::placeholder {
+            color: #9CA3AF;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0118D8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .signup-text {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .signup-text a {
+            color: #6B7280;
+            text-decoration: underline;
+        }
+
+        .or-divider {
+            text-align: center;
+            position: relative;
+            margin: 24px 0;
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: calc(50% - 30px);
+            height: 1px;
+            background-color: #E5E7EB;
+        }
+
+        .or-divider::before {
+            left: 0;
+        }
+
+        .or-divider::after {
+            right: 0;
+        }
+
+        .google-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+        }
+
+        .google-login img {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+
+            .login-left {
+                padding: 40px 20px;
+            }
+
+            .login-right {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <img src="images/bluee.png" alt="Ignist Logo" class="login-logo">
+            <p class="login-tagline">Invest in potential. Ignite success</p>
+        </div>
+        <div class="login-right">
+         <form id="loginForm" class="login-form">
+    <h1>Welcome Back!</h1>
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your Email here" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your Password here" required>
+    </div>
+
+    <button type="submit" class="login-button" id="loginBtn">Log in</button>
+
+    <p class="signup-text">Don't have an account? <a href="/signup">Sign up</a></p>
+
+    <div class="or-divider">OR</div>
+
+    <button type="button" class="google-login">
+        <img src="images/google.png" alt="Google logo">
+        Log in with Google
+    </button>
+</form>
+
+<!-- Login Script -->
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const loginBtn = document.getElementById('loginBtn');
+    loginBtn.disabled = true;
+    loginBtn.textContent = "Logging in...";
+
+    const formData = {
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value
+    };
+
+    console.log("Sending login data:", formData);
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+        console.log("Login result:", result);
+
+        if (result.success) {
+            alert("✅ Login successful! Welcome back.");
+            window.location.href = "/profile";   // Redirect to profile page after login
+        } else {
+            alert("❌ " + (result.message || "Invalid email or password"));
+        }
+    } catch (error) {
+        console.error("Login error:", error);
+        alert("❌ Connection error. Make sure the server is running.");
+    }
+
+    loginBtn.disabled = false;
+    loginBtn.textContent = "Log in";
+});
+</script>
+        </div>
+    </div>
+</body>
+
+</html>
